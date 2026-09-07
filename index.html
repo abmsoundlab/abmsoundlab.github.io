@@ -1,945 +1,655 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta name="color-scheme" content="dark light">
-
-    <title>ABM Soundlab</title>
-
-    <link
-        rel="icon"
-        type="image/x-icon"
-        href="https://i.ibb.co/cX1mVCBw/favicon-32x32.png"
-    >
-
-
-    <style>
-
-        /* ==================================================
-           RESET
-           ================================================== */
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
-
-        html {
-            margin: 0;
-            padding: 0;
-            background: #f5f5f3;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Helvetica, Arial, sans-serif;
-            font-size: 14px;
-            line-height: 1.4;
-            background: #f5f5f3;
-            color: #111;
-            -webkit-font-smoothing: antialiased;
-            text-rendering: optimizeLegibility;
-        }
-
-
-        /* ==================================================
-           PAGE
-           ================================================== */
-
-        .container {
-            width: 100%;
-            max-width: 780px;
-            margin: 0 auto;
-            padding: 42px 24px 70px;
-        }
-
-
-        /* ==================================================
-           HEADER
-           ================================================== */
-
-        .header {
-            margin-bottom: 58px;
-        }
-
-        .logo {
-            margin: 0 0 8px;
-            font-size: 18px;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            line-height: 1;
-        }
-
-        .email {
-            color: #777;
-            text-decoration: none;
-            font-size: 13px;
-            transition: color 0.15s ease;
-        }
-
-        .email:hover {
-            color: #111;
-        }
-
-
-        /* ==================================================
-           SECTIONS
-           ================================================== */
-
-        .section {
-            margin-bottom: 58px;
-        }
-
-        .section:last-child {
-            margin-bottom: 0;
-        }
-
-        .section-label {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-            color: #888;
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-        }
-
-        .section-label::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: #ddd;
-        }
-
-
-        /* ==================================================
-           LOCAL TRACKS
-           ================================================== */
-
-        .track {
-            margin-bottom: 30px;
-        }
-
-        .track:last-child {
-            margin-bottom: 0;
-        }
-
-        .track-header {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 20px;
-            margin-bottom: 8px;
-        }
-
-        .track-name {
-            min-width: 0;
-            color: inherit;
-            font-size: 14px;
-            line-height: 1.35;
-        }
-
-        .track-meta {
-            flex-shrink: 0;
-            color: #999;
-            font-size: 11px;
-            white-space: nowrap;
-        }
-
-
-        /* ==================================================
-           AUDIO
-           ================================================== */
-
-        audio {
-            display: block;
-            width: 100%;
-            height: 40px;
-        }
-
-
-        /* ==================================================
-           DOWNLOAD
-           ================================================== */
-
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            margin-top: 8px;
-            padding: 5px 9px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            background: transparent;
-            color: #666;
-            font-family: Helvetica, Arial, sans-serif;
-            font-size: 11px;
-            line-height: 1;
-            cursor: pointer;
-            transition:
-                color 0.15s ease,
-                border-color 0.15s ease,
-                background 0.15s ease;
-        }
-
-        .download-btn:hover {
-            background: #eaeae8;
-            border-color: #aaa;
-            color: #111;
-        }
-
-
-        /* ==================================================
-           SOUNDCLOUD
-           ================================================== */
-
-        .soundcloud-list {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
-        .soundcloud {
-            width: 100%;
-            overflow: hidden;
-            background: #000;
-            border-radius: 2px;
-        }
-
-        .soundcloud iframe {
-            display: block;
-            width: 100%;
-            height: 166px;
-            border: 0;
-        }
-
-
-        /* ==================================================
-           PASSWORD POPUP
-           ================================================== */
-
-        #passwordOverlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: rgba(245, 245, 243, 0.88);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            cursor: pointer;
-        }
-
-        #passwordBox {
-            width: 100%;
-            max-width: 320px;
-            padding: 24px;
-            background: #fff;
-            border: 1px solid #d5d5d2;
-            border-radius: 4px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-            cursor: default;
-        }
-
-        .password-title {
-            margin-bottom: 4px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .password-description {
-            margin-bottom: 16px;
-            color: #888;
-            font-size: 12px;
-        }
-
-        #passwordBox input {
-            display: block;
-            width: 100%;
-            height: 38px;
-            margin: 0 0 10px;
-            padding: 0 10px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            outline: none;
-            background: #fff;
-            color: #111;
-            font-family: Helvetica, Arial, sans-serif;
-            font-size: 13px;
-        }
-
-        #passwordBox input:focus {
-            border-color: #888;
-        }
-
-        #passwordBox button {
-            width: 100%;
-            height: 38px;
-            border: 1px solid #111;
-            border-radius: 3px;
-            background: #111;
-            color: #fff;
-            font-family: Helvetica, Arial, sans-serif;
-            font-size: 12px;
-            cursor: pointer;
-            transition: background 0.15s ease;
-        }
-
-        #passwordBox button:hover {
-            background: #333;
-        }
-
-        #passwordError {
-            display: none;
-            margin-top: 10px;
-            color: #c00;
-            font-size: 12px;
-        }
-
-
-        /* ==================================================
-           DARK MODE
-           ================================================== */
-
-        @media (prefers-color-scheme: dark) {
-
-            html {
-                background: #0a0a0a;
-            }
-
-            body {
-                background: #0a0a0a;
-                color: #f2f2f2;
-            }
-
-            .email {
-                color: #777;
-            }
-
-            .email:hover {
-                color: #fff;
-            }
-
-            .section-label {
-                color: #666;
-            }
-
-            .section-label::after {
-                background: #282828;
-            }
-
-            .track-meta {
-                color: #666;
-            }
-
-            .download-btn {
-                border-color: #3a3a3a;
-                color: #999;
-            }
-
-            .download-btn:hover {
-                background: #1b1b1b;
-                border-color: #555;
-                color: #fff;
-            }
-
-            .soundcloud {
-                background: #000;
-            }
-
-            #passwordOverlay {
-                background: rgba(0, 0, 0, 0.82);
-            }
-
-            #passwordBox {
-                background: #111;
-                border-color: #333;
-                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-            }
-
-            .password-description {
-                color: #777;
-            }
-
-            #passwordBox input {
-                background: #1b1b1b;
-                color: #fff;
-                border-color: #444;
-            }
-
-            #passwordBox input:focus {
-                border-color: #777;
-            }
-
-            #passwordBox button {
-                background: #eee;
-                color: #111;
-                border-color: #eee;
-            }
-
-            #passwordBox button:hover {
-                background: #fff;
-            }
-
-            #passwordError {
-                color: #ff6666;
-            }
-
-        }
-
-
-        /* ==================================================
-           MOBILE
-           ================================================== */
-
-        @media (max-width: 600px) {
-
-            .container {
-                padding: 28px 16px 50px;
-            }
-
-            .header {
-                margin-bottom: 42px;
-            }
-
-            .section {
-                margin-bottom: 46px;
-            }
-
-            .section-label {
-                margin-bottom: 16px;
-            }
-
-            .track {
-                margin-bottom: 26px;
-            }
-
-            .track-header {
-                display: block;
-                margin-bottom: 7px;
-            }
-
-            .track-meta {
-                display: block;
-                margin-top: 2px;
-            }
-
-            .soundcloud-list {
-                gap: 14px;
-            }
-
-        }
-
-    </style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ABM Soundlab</title>
+
+  <link rel="icon" type="image/png"
+        href="https://i.ibb.co/cX1mVCBw/favicon-32x32.png">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      color: #151515;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: min(780px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 56px 0 42px;
+    }
+
+    .site-title {
+      margin: 0;
+      font-family: "Space Grotesk", Arial, sans-serif;
+      font-size: clamp(2rem, 7vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: -0.06em;
+      line-height: 0.95;
+      color: #111111;
+    }
+
+    .email {
+      display: inline-block;
+      margin-top: 15px;
+      color: #151515;
+      font-size: 0.9rem;
+      text-decoration: none;
+      opacity: 0.6;
+      transition: opacity 0.2s ease;
+    }
+
+    .email:hover {
+      opacity: 1;
+    }
+
+    section {
+      padding: 26px 0 42px;
+    }
+
+    .section-title {
+      margin: 0 0 20px;
+      font-family: "Space Grotesk", Arial, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #151515;
+      opacity: 0.5;
+    }
+
+    .track {
+      padding: 0 0 30px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .track:last-child {
+      margin-bottom: 0;
+    }
+
+    .track-name {
+      margin: 0 0 12px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #151515;
+    }
+
+    audio {
+      display: block;
+      width: 100%;
+      height: 42px;
+    }
+
+    .track-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 12px;
+    }
+
+    .track-info {
+      font-size: 0.78rem;
+      color: #151515;
+      opacity: 0.5;
+    }
+
+    .download-button {
+      appearance: none;
+      border: 1px solid rgba(0, 0, 0, 0.25);
+      background: transparent;
+      color: #151515;
+      padding: 7px 12px;
+      font-family: inherit;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .download-button:hover {
+      background: #151515;
+      border-color: #151515;
+      color: #ffffff;
+    }
+
+    .soundcloud-track {
+      margin-bottom: 24px;
+      overflow: hidden;
+      background: #000000;
+    }
+
+    .soundcloud-track:last-child {
+      margin-bottom: 0;
+    }
+
+    .soundcloud-track iframe {
+      display: block;
+      width: 100%;
+      height: 166px;
+      border: 0;
+    }
+
+    footer {
+      padding: 15px 0 55px;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 0.72rem;
+      color: #151515;
+      opacity: 0.35;
+    }
+
+    /* Password overlay */
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.72);
+    }
+
+    .password-box {
+      width: min(360px, 100%);
+      padding: 28px;
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .password-box h2 {
+      margin: 0 0 8px;
+      font-family: "Space Grotesk", Arial, sans-serif;
+      font-size: 1.25rem;
+    }
+
+    .password-box p {
+      margin: 0 0 18px;
+      font-size: 0.85rem;
+      opacity: 0.6;
+    }
+
+    .password-box input {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid #cccccc;
+      background: #ffffff;
+      color: #000000;
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .password-box input:focus {
+      border-color: #000000;
+    }
+
+    .password-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .password-actions button {
+      flex: 1;
+      padding: 10px 12px;
+      border: 1px solid #000000;
+      background: #000000;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .password-actions .cancel {
+      background: transparent;
+      color: #000000;
+    }
+
+    .password-error {
+      min-height: 18px;
+      margin-top: 10px;
+      color: #c00000;
+      font-size: 0.75rem;
+    }
+
+    /* Dark mode */
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #0b0b0b;
+        color: #ffffff;
+      }
+
+      .site-title,
+      .section-title,
+      .track-name,
+      .track-info,
+      footer p,
+      .email {
+        color: #ffffff;
+      }
+
+      .track {
+        border-bottom-color: rgba(255, 255, 255, 0.12);
+      }
+
+      .download-button {
+        border-color: rgba(255, 255, 255, 0.25);
+        color: #ffffff;
+      }
+
+      .download-button:hover {
+        background: #ffffff;
+        border-color: #ffffff;
+        color: #000000;
+      }
+
+      .soundcloud-track {
+        background: #000000;
+      }
+    }
+
+    /* Mobile */
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(100% - 28px, 780px);
+      }
+
+      header {
+        padding-top: 36px;
+        padding-bottom: 28px;
+      }
+
+      section {
+        padding-top: 22px;
+        padding-bottom: 30px;
+      }
+
+      .track-footer {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .download-button {
+        width: 100%;
+      }
+
+      .soundcloud-track iframe {
+        height: 166px;
+      }
+    }
+  </style>
 </head>
-
 
 <body>
 
+  <main class="container">
 
-<main class="container">
+    <header>
+      <h1 class="site-title">ABM SOUNDLAB</h1>
 
-
-    <!-- ==================================================
-         HEADER
-         ================================================== -->
-
-    <header class="header">
-
-        <h1 class="logo">
-            ABM SOUNDLAB
-        </h1>
-
-        <a
-            class="email"
-            href="mailto:abm.soundlab@gmail.com"
-        >
-            abm.soundlab@gmail.com
-        </a>
-
+      <a class="email" href="mailto:abm.soundlab@gmail.com">
+        abm.soundlab@gmail.com
+      </a>
     </header>
 
 
-    <!-- ==================================================
-         DOWNLOADABLE TRACKS
-         ================================================== -->
-
-    <section class="section">
-
-        <div class="section-label">
-            Downloads
-        </div>
-
-
-        <div class="track">
-
-            <div class="track-header">
-
-                <div class="track-name">
-                    dancehall beat 108 bpm (no_4mat no fear sample)
-                </div>
-
-                <div class="track-meta">
-                    WAV
-                </div>
-
-            </div>
-
-            <audio
-                controls
-                controlsList="nodownload"
-            >
-                <source
-                    src="ABM_108_Emin_dancehall.mp3"
-                    type="audio/mpeg"
-                >
-                Your browser does not support audio.
-            </audio>
-
-            <button
-                class="download-btn"
-                onclick="requestDownload('https://github.com/abmsoundlab/abmsoundlab.github.io/releases/download/audio-v1/ABM_108_Emin_dancehall.wav')"
-            >
-                Download WAV
-            </button>
-
-        </div>
-
-
-        <div class="track">
-
-            <div class="track-header">
-
-                <div class="track-name">
-                    Chief Keef type beat 145 bpm
-                </div>
-
-                <div class="track-meta">
-                    WAV
-                </div>
-
-            </div>
-
-            <audio
-                controls
-                controlsList="nodownload"
-            >
-                <source
-                    src="ABM_145_Fmin_chief_keef.mp3"
-                    type="audio/mpeg"
-                >
-                Your browser does not support audio.
-            </audio>
-
-            <button
-                class="download-btn"
-                onclick="requestDownload('https://github.com/abmsoundlab/abmsoundlab.github.io/releases/download/audio-v1/ABM_145_Fmin_chief_keef.wav')"
-            >
-                Download WAV
-            </button>
-
-        </div>
-
-
-        <div class="track">
-
-            <div class="track-header">
-
-                <div class="track-name">
-                    Chief Keef type beat 155 bpm
-                </div>
-
-                <div class="track-meta">
-                    WAV
-                </div>
-
-            </div>
-
-            <audio
-                controls
-                controlsList="nodownload"
-            >
-                <source
-                    src="ABM_155_Abmin_chief_keef.mp3"
-                    type="audio/mpeg"
-                >
-                Your browser does not support audio.
-            </audio>
-
-            <button
-                class="download-btn"
-                onclick="requestDownload('https://github.com/abmsoundlab/abmsoundlab.github.io/releases/download/audio-v1/ABM_155_Abmin_chief_keef.wav')"
-            >
-                Download WAV
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================================================
-         DEMOS
-         ================================================== -->
-
-    <section class="section">
-
-        <div class="section-label">
-            Demos
-        </div>
-
-
-        <div class="track">
-
-            <div class="track-header">
-
-                <div class="track-name">
-                    synthpunk [demo]
-                </div>
-
-            </div>
-
-            <audio
-                controls
-                controlsList="nodownload"
-            >
-                <source
-                    src="143_synthpunk.mp3"
-                    type="audio/mpeg"
-                >
-                Your browser does not support audio.
-            </audio>
-
-        </div>
-
-
-        <div class="track">
-
-            <div class="track-header">
-
-                <div class="track-name">
-                    liquid with 808 drum machine [demo]
-                </div>
-
-            </div>
-
-            <audio
-                controls
-                controlsList="nodownload"
-            >
-                <source
-                    src="313_liquid_808.mp3"
-                    type="audio/mpeg"
-                >
-                Your browser does not support audio.
-            </audio>
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================================================
-         SOUNDCLOUD
-         ================================================== -->
-
-    <section class="section">
-
-        <div class="section-label">
-            SoundCloud
-        </div>
-
-        <div class="soundcloud-list">
-
-
-            <div class="soundcloud">
-
-                <iframe
-                    scrolling="no"
-                    frameborder="no"
-                    allow="autoplay; encrypted-media"
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2339584835&color=%231f2219&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=true"
-                ></iframe>
-
-            </div>
-
-
-            <div class="soundcloud">
-
-                <iframe
-                    scrolling="no"
-                    frameborder="no"
-                    allow="autoplay; encrypted-media"
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2304834395&color=%233a3a3b&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=true"
-                ></iframe>
-
-            </div>
-
-
-            <div class="soundcloud">
-
-                <iframe
-                    scrolling="no"
-                    frameborder="no"
-                    allow="autoplay; encrypted-media"
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2318155580&color=%230f0f18&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=true"
-                ></iframe>
-
-            </div>
-
-
-            <div class="soundcloud">
-
-                <iframe
-                    scrolling="no"
-                    frameborder="no"
-                    allow="autoplay; encrypted-media"
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2270056595&color=%23121316&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=true"
-                ></iframe>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-</main>
-
-
-<!-- ==================================================
-     PASSWORD POPUP
-     ================================================== -->
-
-<div id="passwordOverlay">
-
-    <div id="passwordBox">
-
-        <div class="password-title">
+    <!-- DOWNLOADS -->
+
+    <section>
+      <h2 class="section-title">Downloads</h2>
+
+      <div class="track">
+        <h3 class="track-name">
+          dancehall beat 108 bpm (no_4mat no fear sample)
+        </h3>
+
+        <audio controls controlsList="nodownload">
+          <source src="ABM_108_Emin_dancehall.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+
+        <div class="track-footer">
+          <span class="track-info">108 BPM · E minor</span>
+
+          <button
+            class="download-button"
+            onclick="requestDownload('https://github.com/abmsoundlab/abmsoundlab.github.io/releases/download/audio-v1/ABM_108_Emin_dancehall.wav')">
             Download WAV
+          </button>
         </div>
+      </div>
 
-        <div class="password-description">
-            Enter the password to download this file.
+
+      <div class="track">
+        <h3 class="track-name">
+          Chief Keef type beat 145 bpm
+        </h3>
+
+        <audio controls controlsList="nodownload">
+          <source src="ABM_145_Fmin_chief_keef.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+
+        <div class="track-footer">
+          <span class="track-info">145 BPM · F minor</span>
+
+          <button
+            class="download-button"
+            onclick="requestDownload('https://github.com/abmsoundlab/abmsoundlab.github.io/releases/download/audio-v1/ABM_145_Fmin_chief_keef.wav')">
+            Download WAV
+          </button>
         </div>
+      </div>
 
-        <input
-            type="password"
-            id="passwordInput"
-            placeholder="Password"
-            autocomplete="off"
-        >
+
+      <div class="track">
+        <h3 class="track-name">
+          Chief Keef type beat 155 bpm
+        </h3>
+
+        <audio controls controlsList="nodownload">
+          <source src="ABM_155_Abmin_chief_keef.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+
+        <div class="track-footer">
+          <span class="track-info">155 BPM · A♭ minor</span>
+
+          <button
+            class="download-button"
+            onclick="requestDownload('https://github.com/abmsoundlab/abmsoundlab.github.io/releases/download/audio-v1/ABM_155_Abmin_chief_keef.wav')">
+            Download WAV
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- DEMOS -->
+
+    <section>
+      <h2 class="section-title">Demos</h2>
+
+      <div class="track">
+        <h3 class="track-name">
+          synthpunk [demo]
+        </h3>
+
+        <audio controls controlsList="nodownload">
+          <source src="143_synthpunk.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+
+
+      <div class="track">
+        <h3 class="track-name">
+          liquid with 808 drum machine [demo]
+        </h3>
+
+        <audio controls controlsList="nodownload">
+          <source src="313_liquid_808.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+
+    </section>
+
+
+    <!-- SOUNDCLOUD -->
+
+    <section>
+      <h2 class="section-title">SoundCloud</h2>
+
+      <div class="soundcloud-track">
+        <iframe
+          loading="lazy"
+          src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2339584835&color=%231f2219&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=true"
+          allow="autoplay; encrypted-media">
+        </iframe>
+      </div>
+
+
+      <div class="soundcloud-track">
+        <iframe
+          loading="lazy"
+          src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2304834395&color=%233a3a3b&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=true"
+          allow="autoplay; encrypted-media">
+        </iframe>
+      </div>
+
+
+      <div class="soundcloud-track">
+        <iframe
+          loading="lazy"
+          src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2318155580&color=%230f0f18&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=true"
+          allow="autoplay; encrypted-media">
+        </iframe>
+      </div>
+
+
+      <div class="soundcloud-track">
+        <iframe
+          loading="lazy"
+          src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2270056595&color=%23121316&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=true"
+          allow="autoplay; encrypted-media">
+        </iframe>
+      </div>
+
+    </section>
+
+
+    <footer>
+      <p>ABM Soundlab</p>
+    </footer>
+
+  </main>
+
+
+  <!-- PASSWORD POPUP -->
+
+  <div class="overlay" id="passwordOverlay">
+
+    <div class="password-box">
+
+      <h2>Download WAV</h2>
+
+      <p>
+        Enter the password to download this file.
+      </p>
+
+      <input
+        type="password"
+        id="passwordInput"
+        placeholder="Password"
+        autocomplete="off">
+
+      <div class="password-actions">
 
         <button onclick="checkPassword()">
-            Download
+          Download
         </button>
 
-        <div id="passwordError">
-            Incorrect password.
-        </div>
+        <button
+          class="cancel"
+          onclick="closePasswordBox()">
+          Cancel
+        </button>
+
+      </div>
+
+      <div
+        class="password-error"
+        id="passwordError">
+      </div>
 
     </div>
 
-</div>
+  </div>
 
 
-<script>
-
-
-    /* ==================================================
-       PASSWORD
-       ================================================== */
+  <script>
 
     const DOWNLOAD_PASSWORD = "feketecartel";
 
     let requestedFile = null;
 
 
-    /* ==================================================
-       DISABLE RIGHT-CLICK
-       ON AUDIO PLAYERS
-       ================================================== */
+    // Prevent right-click on audio players
 
-    document
-        .querySelectorAll("audio")
-        .forEach(audio => {
+    document.querySelectorAll("audio").forEach(audio => {
 
-            audio.addEventListener(
-                "contextmenu",
-                function(event) {
-                    event.preventDefault();
-                }
-            );
+      audio.addEventListener("contextmenu", event => {
+        event.preventDefault();
+      });
 
-        });
+    });
 
 
-    /* ==================================================
-       ONLY ONE LOCAL AUDIO PLAYER
-       CAN PLAY AT ONCE
-       ================================================== */
+    // Only allow one local audio player to play at once
 
-    document
-        .querySelectorAll("audio")
-        .forEach(player => {
+    const players = document.querySelectorAll("audio");
 
-            player.addEventListener(
-                "play",
-                function() {
+    players.forEach(player => {
 
-                    document
-                        .querySelectorAll("audio")
-                        .forEach(otherPlayer => {
+      player.addEventListener("play", () => {
 
-                            if (otherPlayer !== player) {
-                                otherPlayer.pause();
-                            }
+        players.forEach(otherPlayer => {
 
-                        });
-
-                }
-            );
+          if (otherPlayer !== player) {
+            otherPlayer.pause();
+          }
 
         });
 
+      });
 
-    /* ==================================================
-       OPEN PASSWORD POPUP
-       ================================================== */
+    });
+
 
     function requestDownload(filename) {
 
-        requestedFile = filename;
+      requestedFile = filename;
 
-        const overlay =
-            document.getElementById("passwordOverlay");
+      document.getElementById("passwordInput").value = "";
 
-        const input =
-            document.getElementById("passwordInput");
+      document.getElementById("passwordError").textContent = "";
 
-        const error =
-            document.getElementById("passwordError");
+      document.getElementById("passwordOverlay").style.display = "flex";
 
-        overlay.style.display = "flex";
+      setTimeout(() => {
 
-        input.value = "";
+        document.getElementById("passwordInput").focus();
 
-        error.style.display = "none";
-
-        input.focus();
+      }, 50);
 
     }
 
-
-    /* ==================================================
-       CHECK PASSWORD
-       ================================================== */
 
     function checkPassword() {
 
-        const password =
-            document.getElementById("passwordInput").value;
+      const input =
+        document.getElementById("passwordInput").value;
 
-        if (password === DOWNLOAD_PASSWORD) {
+      const error =
+        document.getElementById("passwordError");
 
-            const link =
-                document.createElement("a");
 
-            link.href = requestedFile;
+      if (input === DOWNLOAD_PASSWORD) {
 
-            link.download = requestedFile;
+        const link = document.createElement("a");
 
-            document.body.appendChild(link);
+        link.href = requestedFile;
 
-            link.click();
+        link.download =
+          requestedFile.split("/").pop();
 
-            document.body.removeChild(link);
+        document.body.appendChild(link);
 
-            closePasswordBox();
+        link.click();
 
-        } else {
+        link.remove();
 
-            document.getElementById(
-                "passwordError"
-            ).style.display = "block";
+        closePasswordBox();
 
-        }
+      } else {
+
+        error.textContent = "Incorrect password.";
+
+      }
 
     }
 
-
-    /* ==================================================
-       CLOSE PASSWORD POPUP
-       ================================================== */
 
     function closePasswordBox() {
 
-        document.getElementById(
-            "passwordOverlay"
-        ).style.display = "none";
+      document.getElementById("passwordOverlay").style.display = "none";
 
-        requestedFile = null;
+      requestedFile = null;
 
     }
 
 
-    /* ==================================================
-       CLICK OUTSIDE POPUP TO CLOSE
-       ================================================== */
+    // Close when clicking outside the password box
 
     document
-        .getElementById("passwordOverlay")
-        .addEventListener(
-            "click",
-            function(event) {
+      .getElementById("passwordOverlay")
+      .addEventListener("click", event => {
 
-                if (event.target === this) {
-                    closePasswordBox();
-                }
+        if (event.target.id === "passwordOverlay") {
+          closePasswordBox();
+        }
 
-            }
-        );
+      });
 
 
-    /* ==================================================
-       ENTER = SUBMIT
-       ESCAPE = CLOSE
-       ================================================== */
+    // Keyboard controls
 
     document
-        .getElementById("passwordInput")
-        .addEventListener(
-            "keydown",
-            function(event) {
+      .getElementById("passwordInput")
+      .addEventListener("keydown", event => {
 
-                if (event.key === "Enter") {
-                    checkPassword();
-                }
+        if (event.key === "Enter") {
+          checkPassword();
+        }
 
-                if (event.key === "Escape") {
-                    closePasswordBox();
-                }
+        if (event.key === "Escape") {
+          closePasswordBox();
+        }
 
-            }
-        );
+      });
 
-</script>
-
+  </script>
 
 </body>
 </html>
