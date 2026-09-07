@@ -37,6 +37,24 @@
         font-family: Helvetica, sans-serif;
     }
 
+       audio {
+    width: 100%;
+    max-width: 500px;
+    color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: light) {
+    audio {
+        color-scheme: light;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    audio {
+        color-scheme: dark;
+    }
+}
+
     /* =========================
        PASSWORD POPUP
        ========================= */
