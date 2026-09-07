@@ -235,6 +235,16 @@
     });
 });
 
+        document.querySelectorAll("audio").forEach(player => {
+    player.addEventListener("play", function() {
+        document.querySelectorAll("audio").forEach(otherPlayer => {
+            if (otherPlayer !== player) {
+                otherPlayer.pause();
+            }
+        });
+    });
+});
+
         function requestDownload(filename) {
 
             requestedFile = filename;
