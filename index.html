@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        content="width=device-width, initial-scale=1.0"
     >
 
     <meta name="color-scheme" content="dark light">
@@ -17,103 +20,201 @@
         href="https://i.ibb.co/cX1mVCBw/favicon-32x32.png"
     >
 
+
     <style>
 
-        /* =========================
-           BASE
-           ========================= */
+        /* ==================================================
+           RESET
+           ================================================== */
 
-        * {
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
         }
 
-        html,
+        html {
+            margin: 0;
+            padding: 0;
+            background: #f5f5f3;
+        }
+
         body {
             margin: 0;
             padding: 0;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+            background: #f5f5f3;
+            color: #111;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
         }
 
-        body {
-            font-family: Helvetica, sans-serif;
-            background-color: #fff;
-            color: #000;
-        }
 
-
-        /* =========================
-           MAIN CONTENT
-           ========================= */
+        /* ==================================================
+           PAGE
+           ================================================== */
 
         .container {
             width: 100%;
-            max-width: 900px;
+            max-width: 780px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 42px 24px 70px;
         }
 
 
-        /* =========================
-           EMAIL BUTTON
-           ========================= */
+        /* ==================================================
+           HEADER
+           ================================================== */
 
-        .email-btn {
-            display: inline-block;
-            margin-bottom: 30px;
-            padding: 8px 14px;
-            cursor: pointer;
-            font-family: Helvetica, sans-serif;
+        .header {
+            margin-bottom: 58px;
+        }
+
+        .logo {
+            margin: 0 0 8px;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            line-height: 1;
+        }
+
+        .email {
+            color: #777;
             text-decoration: none;
-            border-radius: 4px;
-            transition:
-                background 0.15s ease,
-                border-color 0.15s ease;
+            font-size: 13px;
+            transition: color 0.15s ease;
+        }
+
+        .email:hover {
+            color: #111;
         }
 
 
-        /* =========================
-           TRACKS
-           ========================= */
+        /* ==================================================
+           SECTIONS
+           ================================================== */
+
+        .section {
+            margin-bottom: 58px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            color: #888;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .section-label::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #ddd;
+        }
+
+
+        /* ==================================================
+           LOCAL TRACKS
+           ================================================== */
 
         .track {
-            width: 100%;
-            margin-bottom: 28px;
+            margin-bottom: 30px;
+        }
+
+        .track:last-child {
+            margin-bottom: 0;
+        }
+
+        .track-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 8px;
         }
 
         .track-name {
-            margin-bottom: 7px;
-            line-height: 1.3;
+            min-width: 0;
+            color: inherit;
+            font-size: 14px;
+            line-height: 1.35;
         }
+
+        .track-meta {
+            flex-shrink: 0;
+            color: #999;
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+
+        /* ==================================================
+           AUDIO
+           ================================================== */
 
         audio {
             display: block;
             width: 100%;
             height: 40px;
-            color-scheme: light dark;
         }
 
 
-        /* =========================
-           DOWNLOAD BUTTON
-           ========================= */
+        /* ==================================================
+           DOWNLOAD
+           ================================================== */
 
         .download-btn {
-            display: block;
+            display: inline-flex;
+            align-items: center;
             margin-top: 8px;
-            padding: 5px 10px;
+            padding: 5px 9px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            background: transparent;
+            color: #666;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            line-height: 1;
             cursor: pointer;
-            font-family: Helvetica, sans-serif;
+            transition:
+                color 0.15s ease,
+                border-color 0.15s ease,
+                background 0.15s ease;
+        }
+
+        .download-btn:hover {
+            background: #eaeae8;
+            border-color: #aaa;
+            color: #111;
         }
 
 
-        /* =========================
+        /* ==================================================
            SOUNDCLOUD
-           ========================= */
+           ================================================== */
+
+        .soundcloud-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
 
         .soundcloud {
             width: 100%;
-            margin: 0 0 28px 0;
-            padding: 0;
+            overflow: hidden;
             background: #000;
+            border-radius: 2px;
         }
 
         .soundcloud iframe {
@@ -124,80 +225,135 @@
         }
 
 
-        /* =========================
+        /* ==================================================
            PASSWORD POPUP
-           ========================= */
+           ================================================== */
 
         #passwordOverlay {
             display: none;
             position: fixed;
             inset: 0;
+            z-index: 1000;
             align-items: center;
             justify-content: center;
-            z-index: 1000;
+            padding: 20px;
+            background: rgba(245, 245, 243, 0.88);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             cursor: pointer;
         }
 
         #passwordBox {
-            width: 280px;
-            padding: 20px;
+            width: 100%;
+            max-width: 320px;
+            padding: 24px;
+            background: #fff;
+            border: 1px solid #d5d5d2;
+            border-radius: 4px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
             cursor: default;
         }
 
+        .password-title {
+            margin-bottom: 4px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .password-description {
+            margin-bottom: 16px;
+            color: #888;
+            font-size: 12px;
+        }
+
         #passwordBox input {
+            display: block;
             width: 100%;
-            box-sizing: border-box;
-            margin: 10px 0;
-            padding: 8px;
+            height: 38px;
+            margin: 0 0 10px;
+            padding: 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            outline: none;
+            background: #fff;
+            color: #111;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 13px;
+        }
+
+        #passwordBox input:focus {
+            border-color: #888;
         }
 
         #passwordBox button {
-            padding: 8px 14px;
+            width: 100%;
+            height: 38px;
+            border: 1px solid #111;
+            border-radius: 3px;
+            background: #111;
+            color: #fff;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 12px;
             cursor: pointer;
-            font-family: Helvetica, sans-serif;
+            transition: background 0.15s ease;
+        }
+
+        #passwordBox button:hover {
+            background: #333;
         }
 
         #passwordError {
             display: none;
-            margin-top: 8px;
-            font-size: 13px;
+            margin-top: 10px;
+            color: #c00;
+            font-size: 12px;
         }
 
 
-        /* =========================
+        /* ==================================================
            DARK MODE
-           ========================= */
+           ================================================== */
 
         @media (prefers-color-scheme: dark) {
 
+            html {
+                background: #0a0a0a;
+            }
+
             body {
-                background-color: #000;
+                background: #0a0a0a;
+                color: #f2f2f2;
+            }
+
+            .email {
+                color: #777;
+            }
+
+            .email:hover {
                 color: #fff;
             }
 
-            audio {
-                color-scheme: dark;
+            .section-label {
+                color: #666;
             }
 
-            .email-btn {
-                background: #222;
-                color: #fff;
-                border: 1px solid #555;
+            .section-label::after {
+                background: #282828;
             }
 
-            .email-btn:hover {
-                background: #333;
-                border-color: #777;
+            .track-meta {
+                color: #666;
             }
 
             .download-btn {
-                background: #222;
-                color: #fff;
-                border: 1px solid #555;
+                border-color: #3a3a3a;
+                color: #999;
             }
 
             .download-btn:hover {
-                background: #333;
+                background: #1b1b1b;
+                border-color: #555;
+                color: #fff;
             }
 
             .soundcloud {
@@ -205,162 +361,148 @@
             }
 
             #passwordOverlay {
-                background: rgba(0, 0, 0, 0.8);
+                background: rgba(0, 0, 0, 0.82);
             }
 
             #passwordBox {
                 background: #111;
-                color: #fff;
-                border: 1px solid #444;
+                border-color: #333;
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            }
+
+            .password-description {
+                color: #777;
             }
 
             #passwordBox input {
-                background: #222;
+                background: #1b1b1b;
                 color: #fff;
-                border: 1px solid #555;
+                border-color: #444;
+            }
+
+            #passwordBox input:focus {
+                border-color: #777;
             }
 
             #passwordBox button {
-                background: #222;
-                color: #fff;
-                border: 1px solid #555;
+                background: #eee;
+                color: #111;
+                border-color: #eee;
             }
 
             #passwordBox button:hover {
-                background: #333;
+                background: #fff;
             }
 
             #passwordError {
                 color: #ff6666;
             }
+
         }
 
 
-        /* =========================
-           LIGHT MODE
-           ========================= */
-
-        @media (prefers-color-scheme: light) {
-
-            body {
-                background-color: #fff;
-                color: #000;
-            }
-
-            audio {
-                color-scheme: light;
-            }
-
-            .email-btn {
-                background: #eee;
-                color: #000;
-                border: 1px solid #aaa;
-            }
-
-            .email-btn:hover {
-                background: #ddd;
-                border-color: #888;
-            }
-
-            .download-btn {
-                background: #eee;
-                color: #000;
-                border: 1px solid #aaa;
-            }
-
-            .download-btn:hover {
-                background: #ddd;
-            }
-
-            .soundcloud {
-                background: #fff;
-            }
-
-            #passwordOverlay {
-                background: rgba(255, 255, 255, 0.8);
-            }
-
-            #passwordBox {
-                background: #fff;
-                color: #000;
-                border: 1px solid #aaa;
-            }
-
-            #passwordBox input {
-                background: #fff;
-                color: #000;
-                border: 1px solid #aaa;
-            }
-
-            #passwordBox button {
-                background: #eee;
-                color: #000;
-                border: 1px solid #aaa;
-            }
-
-            #passwordBox button:hover {
-                background: #ddd;
-            }
-
-            #passwordError {
-                color: #cc0000;
-            }
-        }
-
-
-        /* =========================
+        /* ==================================================
            MOBILE
-           ========================= */
+           ================================================== */
 
         @media (max-width: 600px) {
 
             .container {
-                padding: 12px;
+                padding: 28px 16px 50px;
             }
 
-            .email-btn {
-                margin-bottom: 24px;
+            .header {
+                margin-bottom: 42px;
+            }
+
+            .section {
+                margin-bottom: 46px;
+            }
+
+            .section-label {
+                margin-bottom: 16px;
             }
 
             .track {
-                margin-bottom: 24px;
+                margin-bottom: 26px;
             }
 
-            .soundcloud {
-                margin-bottom: 24px;
+            .track-header {
+                display: block;
+                margin-bottom: 7px;
             }
+
+            .track-meta {
+                display: block;
+                margin-top: 2px;
+            }
+
+            .soundcloud-list {
+                gap: 14px;
+            }
+
         }
 
     </style>
+
 </head>
 
 
 <body>
 
-    <main class="container">
+
+<main class="container">
 
 
-        <!-- Email -->
+    <!-- ==================================================
+         HEADER
+         ================================================== -->
+
+    <header class="header">
+
+        <h1 class="logo">
+            ABM SOUNDLAB
+        </h1>
 
         <a
-            class="email-btn"
+            class="email"
             href="mailto:abm.soundlab@gmail.com"
         >
             abm.soundlab@gmail.com
         </a>
 
+    </header>
 
-        <!-- =========================
-             MP3 TRACKS
-             ========================= -->
+
+    <!-- ==================================================
+         DOWNLOADABLE TRACKS
+         ================================================== -->
+
+    <section class="section">
+
+        <div class="section-label">
+            Downloads
+        </div>
+
 
         <div class="track">
 
-            <div class="track-name">
-                dancehall beat 108 bpm (no_4mat no fear sample)
+            <div class="track-header">
+
+                <div class="track-name">
+                    dancehall beat 108 bpm (no_4mat no fear sample)
+                </div>
+
+                <div class="track-meta">
+                    WAV
+                </div>
+
             </div>
 
-            <audio controls controlsList="nodownload">
+            <audio
+                controls
+                controlsList="nodownload"
+            >
                 <source
                     src="ABM_108_Emin_dancehall.mp3"
                     type="audio/mpeg"
@@ -372,7 +514,7 @@
                 class="download-btn"
                 onclick="requestDownload('https://github.com/abmsoundlab/abmsoundlab.github.io/releases/download/audio-v1/ABM_108_Emin_dancehall.wav')"
             >
-                Download
+                Download WAV
             </button>
 
         </div>
@@ -380,11 +522,22 @@
 
         <div class="track">
 
-            <div class="track-name">
-                Chief Keef type beat 145 bpm
+            <div class="track-header">
+
+                <div class="track-name">
+                    Chief Keef type beat 145 bpm
+                </div>
+
+                <div class="track-meta">
+                    WAV
+                </div>
+
             </div>
 
-            <audio controls controlsList="nodownload">
+            <audio
+                controls
+                controlsList="nodownload"
+            >
                 <source
                     src="ABM_145_Fmin_chief_keef.mp3"
                     type="audio/mpeg"
@@ -396,7 +549,7 @@
                 class="download-btn"
                 onclick="requestDownload('https://github.com/abmsoundlab/abmsoundlab.github.io/releases/download/audio-v1/ABM_145_Fmin_chief_keef.wav')"
             >
-                Download
+                Download WAV
             </button>
 
         </div>
@@ -404,11 +557,22 @@
 
         <div class="track">
 
-            <div class="track-name">
-                Chief Keef type beat 155 bpm
+            <div class="track-header">
+
+                <div class="track-name">
+                    Chief Keef type beat 155 bpm
+                </div>
+
+                <div class="track-meta">
+                    WAV
+                </div>
+
             </div>
 
-            <audio controls controlsList="nodownload">
+            <audio
+                controls
+                controlsList="nodownload"
+            >
                 <source
                     src="ABM_155_Abmin_chief_keef.mp3"
                     type="audio/mpeg"
@@ -420,19 +584,39 @@
                 class="download-btn"
                 onclick="requestDownload('https://github.com/abmsoundlab/abmsoundlab.github.io/releases/download/audio-v1/ABM_155_Abmin_chief_keef.wav')"
             >
-                Download
+                Download WAV
             </button>
 
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         DEMOS
+         ================================================== -->
+
+    <section class="section">
+
+        <div class="section-label">
+            Demos
         </div>
 
 
         <div class="track">
 
-            <div class="track-name">
-                synthpunk [demo]
+            <div class="track-header">
+
+                <div class="track-name">
+                    synthpunk [demo]
+                </div>
+
             </div>
 
-            <audio controls controlsList="nodownload">
+            <audio
+                controls
+                controlsList="nodownload"
+            >
                 <source
                     src="143_synthpunk.mp3"
                     type="audio/mpeg"
@@ -445,11 +629,18 @@
 
         <div class="track">
 
-            <div class="track-name">
-                liquid with 808 drum machine [demo]
+            <div class="track-header">
+
+                <div class="track-name">
+                    liquid with 808 drum machine [demo]
+                </div>
+
             </div>
 
-            <audio controls controlsList="nodownload">
+            <audio
+                controls
+                controlsList="nodownload"
+            >
                 <source
                     src="313_liquid_808.mp3"
                     type="audio/mpeg"
@@ -459,238 +650,282 @@
 
         </div>
 
-
-<!-- =========================
-     SOUNDCLOUD
-     ========================= -->
-
-<div class="soundcloud">
-
-    <iframe
-        width="100%"
-        height="166"
-        scrolling="no"
-        frameborder="no"
-        allow="autoplay; encrypted-media"
-        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2339584835&color=%231f2219&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=true">
-    </iframe>
-
-</div>
+    </section>
 
 
-<div class="soundcloud">
+    <!-- ==================================================
+         SOUNDCLOUD
+         ================================================== -->
 
-    <iframe
-        width="100%"
-        height="166"
-        scrolling="no"
-        frameborder="no"
-        allow="autoplay; encrypted-media"
-        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2304834395&color=%233a3a3b&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=true">
-    </iframe>
+    <section class="section">
 
-</div>
-        
- 
-<div class="soundcloud">
+        <div class="section-label">
+            SoundCloud
+        </div>
 
-    <iframe
-        width="100%"
-        height="166"
-        scrolling="no"
-        frameborder="no"
-        allow="autoplay; encrypted-media"
-        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2318155580&color=%230f0f18&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=true">
-    </iframe>
-
-</div>
+        <div class="soundcloud-list">
 
 
-<div class="soundcloud">
-    
-        <iframe 
-            width="100%" 
-            height="166" 
-            scrolling="no" 
-            frameborder="no" 
-            allow="autoplay; encrypted-media" 
-            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2270056595&color=%23121316&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=true">
-        </iframe>
+            <div class="soundcloud">
 
-</div>
-        
-    </main>
+                <iframe
+                    scrolling="no"
+                    frameborder="no"
+                    allow="autoplay; encrypted-media"
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2339584835&color=%231f2219&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=true"
+                ></iframe>
 
-
-    <!-- =========================
-         PASSWORD POPUP
-         ========================= -->
-
-    <div id="passwordOverlay">
-
-        <div id="passwordBox">
-
-            <div>
-                Enter password to download:
             </div>
 
-            <input
-                type="password"
-                id="passwordInput"
-                placeholder="Password"
-                autocomplete="off"
-            >
 
-            <button onclick="checkPassword()">
-                Download
-            </button>
+            <div class="soundcloud">
 
-            <div id="passwordError">
-                Incorrect password.
+                <iframe
+                    scrolling="no"
+                    frameborder="no"
+                    allow="autoplay; encrypted-media"
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2304834395&color=%233a3a3b&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=true"
+                ></iframe>
+
             </div>
 
+
+            <div class="soundcloud">
+
+                <iframe
+                    scrolling="no"
+                    frameborder="no"
+                    allow="autoplay; encrypted-media"
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2318155580&color=%230f0f18&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=true"
+                ></iframe>
+
+            </div>
+
+
+            <div class="soundcloud">
+
+                <iframe
+                    scrolling="no"
+                    frameborder="no"
+                    allow="autoplay; encrypted-media"
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2270056595&color=%23121316&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=true"
+                ></iframe>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- ==================================================
+     PASSWORD POPUP
+     ================================================== -->
+
+<div id="passwordOverlay">
+
+    <div id="passwordBox">
+
+        <div class="password-title">
+            Download WAV
+        </div>
+
+        <div class="password-description">
+            Enter the password to download this file.
+        </div>
+
+        <input
+            type="password"
+            id="passwordInput"
+            placeholder="Password"
+            autocomplete="off"
+        >
+
+        <button onclick="checkPassword()">
+            Download
+        </button>
+
+        <div id="passwordError">
+            Incorrect password.
         </div>
 
     </div>
 
-
-    <script>
-
-        // =========================
-        // PASSWORD
-        // =========================
-
-        const DOWNLOAD_PASSWORD = "feketecartel";
-
-        let requestedFile = null;
+</div>
 
 
-        // =========================
-        // DISABLE RIGHT-CLICK
-        // ON AUDIO PLAYERS
-        // =========================
-
-        document.querySelectorAll("audio").forEach(audio => {
-
-            audio.addEventListener("contextmenu", function(event) {
-                event.preventDefault();
-            });
-
-        });
+<script>
 
 
-        // =========================
-        // ONLY ONE AUDIO PLAYER
-        // CAN PLAY AT ONCE
-        // =========================
+    /* ==================================================
+       PASSWORD
+       ================================================== */
 
-        document.querySelectorAll("audio").forEach(player => {
+    const DOWNLOAD_PASSWORD = "feketecartel";
 
-            player.addEventListener("play", function() {
+    let requestedFile = null;
 
-                document.querySelectorAll("audio").forEach(otherPlayer => {
 
-                    if (otherPlayer !== player) {
-                        otherPlayer.pause();
-                    }
+    /* ==================================================
+       DISABLE RIGHT-CLICK
+       ON AUDIO PLAYERS
+       ================================================== */
 
-                });
+    document
+        .querySelectorAll("audio")
+        .forEach(audio => {
 
-            });
+            audio.addEventListener(
+                "contextmenu",
+                function(event) {
+                    event.preventDefault();
+                }
+            );
 
         });
 
 
-        // =========================
-        // OPEN PASSWORD POPUP
-        // =========================
+    /* ==================================================
+       ONLY ONE LOCAL AUDIO PLAYER
+       CAN PLAY AT ONCE
+       ================================================== */
 
-        function requestDownload(filename) {
+    document
+        .querySelectorAll("audio")
+        .forEach(player => {
 
-            requestedFile = filename;
+            player.addEventListener(
+                "play",
+                function() {
 
-            document.getElementById("passwordOverlay").style.display = "flex";
+                    document
+                        .querySelectorAll("audio")
+                        .forEach(otherPlayer => {
 
-            document.getElementById("passwordInput").value = "";
+                            if (otherPlayer !== player) {
+                                otherPlayer.pause();
+                            }
 
-            document.getElementById("passwordError").style.display = "none";
+                        });
 
-            document.getElementById("passwordInput").focus();
+                }
+            );
+
+        });
+
+
+    /* ==================================================
+       OPEN PASSWORD POPUP
+       ================================================== */
+
+    function requestDownload(filename) {
+
+        requestedFile = filename;
+
+        const overlay =
+            document.getElementById("passwordOverlay");
+
+        const input =
+            document.getElementById("passwordInput");
+
+        const error =
+            document.getElementById("passwordError");
+
+        overlay.style.display = "flex";
+
+        input.value = "";
+
+        error.style.display = "none";
+
+        input.focus();
+
+    }
+
+
+    /* ==================================================
+       CHECK PASSWORD
+       ================================================== */
+
+    function checkPassword() {
+
+        const password =
+            document.getElementById("passwordInput").value;
+
+        if (password === DOWNLOAD_PASSWORD) {
+
+            const link =
+                document.createElement("a");
+
+            link.href = requestedFile;
+
+            link.download = requestedFile;
+
+            document.body.appendChild(link);
+
+            link.click();
+
+            document.body.removeChild(link);
+
+            closePasswordBox();
+
+        } else {
+
+            document.getElementById(
+                "passwordError"
+            ).style.display = "block";
 
         }
 
-
-        // =========================
-        // CHECK PASSWORD
-        // =========================
-
-        function checkPassword() {
-
-            const password =
-                document.getElementById("passwordInput").value;
-
-            if (password === DOWNLOAD_PASSWORD) {
-
-                const link = document.createElement("a");
-
-                link.href = requestedFile;
-
-                link.download = requestedFile;
-
-                document.body.appendChild(link);
-
-                link.click();
-
-                document.body.removeChild(link);
-
-                closePasswordBox();
-
-            } else {
-
-                document.getElementById("passwordError").style.display = "block";
-
-            }
-
-        }
+    }
 
 
-        // =========================
-        // CLOSE PASSWORD POPUP
-        // =========================
+    /* ==================================================
+       CLOSE PASSWORD POPUP
+       ================================================== */
 
-        function closePasswordBox() {
+    function closePasswordBox() {
 
-            document.getElementById("passwordOverlay").style.display = "none";
+        document.getElementById(
+            "passwordOverlay"
+        ).style.display = "none";
 
-            requestedFile = null;
+        requestedFile = null;
 
-        }
+    }
 
 
-        // =========================
-        // CLICK / TAP OUTSIDE POPUP
-        // TO CLOSE IT
-        // =========================
+    /* ==================================================
+       CLICK OUTSIDE POPUP TO CLOSE
+       ================================================== */
 
-        document
-            .getElementById("passwordOverlay")
-            .addEventListener("click", function(event) {
+    document
+        .getElementById("passwordOverlay")
+        .addEventListener(
+            "click",
+            function(event) {
 
                 if (event.target === this) {
                     closePasswordBox();
                 }
 
-            });
+            }
+        );
 
 
-        // =========================
-        // ENTER = SUBMIT
-        // ESCAPE = CLOSE
-        // =========================
+    /* ==================================================
+       ENTER = SUBMIT
+       ESCAPE = CLOSE
+       ================================================== */
 
-        document
-            .getElementById("passwordInput")
-            .addEventListener("keydown", function(event) {
+    document
+        .getElementById("passwordInput")
+        .addEventListener(
+            "keydown",
+            function(event) {
 
                 if (event.key === "Enter") {
                     checkPassword();
@@ -700,9 +935,11 @@
                     closePasswordBox();
                 }
 
-            });
+            }
+        );
 
-    </script>
+</script>
+
 
 </body>
 </html>
