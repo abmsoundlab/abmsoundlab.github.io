@@ -9,200 +9,253 @@
     <title>ABM Soundlab</title>
 
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/cX1mVCBw/favicon-32x32.png">
-    
-   <style>
-    body {
-    font-family: Helvetica, sans-serif;
-    margin: 8px;
-}
 
-.track {
-    margin-bottom: 20px;
-}
-
-.track-name {
-    margin-bottom: 5px;
-}
-
-audio {
-    width: 100%;
-    max-width: 500px;
-    color-scheme: light dark;
-}
-
-@media (prefers-color-scheme: light) {
-    audio {
-        color-scheme: light;
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    audio {
-        color-scheme: dark;
-    }
-}
-
-.download-btn {
-    display: block;
-    margin-top: 6px;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-family: Helvetica, sans-serif;
-}
-
-    /* =========================
-       PASSWORD POPUP
-       ========================= */
-
-    #passwordOverlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-        cursor: pointer;
-    }
-
-    #passwordBox {
-        padding: 20px;
-        width: 280px;
-        cursor: default;
-    }
-
-    #passwordBox input {
-        width: 100%;
-        box-sizing: border-box;
-        margin: 10px 0;
-        padding: 8px;
-    }
-
-    #passwordBox button {
-        padding: 8px 14px;
-        cursor: pointer;
-        font-family: Helvetica, sans-serif;
-    }
-
-    #passwordError {
-        font-size: 13px;
-        margin-top: 8px;
-        display: none;
-    }
-
-
-    /* =========================
-       DARK MODE
-       ========================= */
-
-    @media (prefers-color-scheme: dark) {
+    <style>
 
         body {
-            background-color: #000;
-            color: #fff;
+            font-family: Helvetica, sans-serif;
+            margin: 8px;
         }
+
+        .track {
+            margin-bottom: 20px;
+        }
+
+        .track-name {
+            margin-bottom: 5px;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 500px;
+            color-scheme: light dark;
+        }
+
+        @media (prefers-color-scheme: light) {
+            audio {
+                color-scheme: light;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            audio {
+                color-scheme: dark;
+            }
+        }
+
+
+        /* =========================
+           EMAIL BUTTON
+           ========================= */
+
+        .email-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 14px;
+            cursor: pointer;
+            font-family: Helvetica, sans-serif;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
+
+
+        /* =========================
+           DOWNLOAD BUTTON
+           ========================= */
 
         .download-btn {
-            background: #222;
-            color: #fff;
-            border: 1px solid #555;
+            display: block;
+            margin-top: 6px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-family: Helvetica, sans-serif;
         }
 
-        .download-btn:hover {
-            background: #333;
-        }
+
+        /* =========================
+           PASSWORD POPUP
+           ========================= */
 
         #passwordOverlay {
-            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            position: fixed;
+            inset: 0;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            cursor: pointer;
         }
 
         #passwordBox {
-            background: #111;
-            color: #fff;
-            border: 1px solid #444;
+            padding: 20px;
+            width: 280px;
+            cursor: default;
         }
 
         #passwordBox input {
-            background: #222;
-            color: #fff;
-            border: 1px solid #555;
+            width: 100%;
+            box-sizing: border-box;
+            margin: 10px 0;
+            padding: 8px;
         }
 
         #passwordBox button {
-            background: #222;
-            color: #fff;
-            border: 1px solid #555;
-        }
-
-        #passwordBox button:hover {
-            background: #333;
+            padding: 8px 14px;
+            cursor: pointer;
+            font-family: Helvetica, sans-serif;
         }
 
         #passwordError {
-            color: #ff6666;
-        }
-    }
-
-
-    /* =========================
-       LIGHT MODE
-       ========================= */
-
-    @media (prefers-color-scheme: light) {
-
-        body {
-            background-color: #fff;
-            color: #000;
+            font-size: 13px;
+            margin-top: 8px;
+            display: none;
         }
 
-        .download-btn {
-            background: #eee;
-            color: #000;
-            border: 1px solid #aaa;
+
+        /* =========================
+           DARK MODE
+           ========================= */
+
+        @media (prefers-color-scheme: dark) {
+
+            body {
+                background-color: #000;
+                color: #fff;
+            }
+
+            .email-btn {
+                background: #222;
+                color: #fff;
+                border: 1px solid #555;
+            }
+
+            .email-btn:hover {
+                background: #333;
+                border-color: #777;
+            }
+
+            .download-btn {
+                background: #222;
+                color: #fff;
+                border: 1px solid #555;
+            }
+
+            .download-btn:hover {
+                background: #333;
+            }
+
+            #passwordOverlay {
+                background: rgba(0, 0, 0, 0.8);
+            }
+
+            #passwordBox {
+                background: #111;
+                color: #fff;
+                border: 1px solid #444;
+            }
+
+            #passwordBox input {
+                background: #222;
+                color: #fff;
+                border: 1px solid #555;
+            }
+
+            #passwordBox button {
+                background: #222;
+                color: #fff;
+                border: 1px solid #555;
+            }
+
+            #passwordBox button:hover {
+                background: #333;
+            }
+
+            #passwordError {
+                color: #ff6666;
+            }
         }
 
-        .download-btn:hover {
-            background: #ddd;
+
+        /* =========================
+           LIGHT MODE
+           ========================= */
+
+        @media (prefers-color-scheme: light) {
+
+            body {
+                background-color: #fff;
+                color: #000;
+            }
+
+            .email-btn {
+                background: #eee;
+                color: #000;
+                border: 1px solid #aaa;
+            }
+
+            .email-btn:hover {
+                background: #ddd;
+                border-color: #888;
+            }
+
+            .download-btn {
+                background: #eee;
+                color: #000;
+                border: 1px solid #aaa;
+            }
+
+            .download-btn:hover {
+                background: #ddd;
+            }
+
+            #passwordOverlay {
+                background: rgba(255, 255, 255, 0.8);
+            }
+
+            #passwordBox {
+                background: #fff;
+                color: #000;
+                border: 1px solid #aaa;
+            }
+
+            #passwordBox input {
+                background: #fff;
+                color: #000;
+                border: 1px solid #aaa;
+            }
+
+            #passwordBox button {
+                background: #eee;
+                color: #000;
+                border: 1px solid #aaa;
+            }
+
+            #passwordBox button:hover {
+                background: #ddd;
+            }
+
+            #passwordError {
+                color: #cc0000;
+            }
         }
 
-        #passwordOverlay {
-            background: rgba(255, 255, 255, 0.8);
-        }
-
-        #passwordBox {
-            background: #fff;
-            color: #000;
-            border: 1px solid #aaa;
-        }
-
-        #passwordBox input {
-            background: #fff;
-            color: #000;
-            border: 1px solid #aaa;
-        }
-
-        #passwordBox button {
-            background: #eee;
-            color: #000;
-            border: 1px solid #aaa;
-        }
-
-        #passwordBox button:hover {
-            background: #ddd;
-        }
-
-        #passwordError {
-            color: #cc0000;
-        }
-    }
-</style>
+    </style>
 </head>
+
 
 <body>
 
-        <a href="mailto:abm.soundlab@gmail.com">
-        abm.soundlab@gmail.com
+
+    <!-- Email -->
+
+    <a class="email-btn" href="mailto:abm.soundlab@gmail.com">
+        Email ABM Soundlab
     </a>
-    
+
+
+    <!-- Tracks -->
+
     <div class="track">
         <div class="track-name">synthpunk [demo].mp3</div>
 
@@ -210,7 +263,6 @@ audio {
             <source src="143_synthpunk.mp3" type="audio/mpeg">
             Your browser does not support audio.
         </audio>
-
     </div>
 
 
@@ -277,10 +329,9 @@ audio {
             <source src="313_liquid_808.mp3" type="audio/mpeg">
             Your browser does not support audio.
         </audio>
-
     </div>
 
-    
+
     <div class="track">
         <div class="track-name">chief keef type beat 145 bpm Fmin.mp3</div>
 
@@ -294,6 +345,7 @@ audio {
         </button>
     </div>
 
+
     <div class="track">
         <div class="track-name">chief keef type beat 155 bpm G#min.mp3</div>
 
@@ -306,7 +358,8 @@ audio {
             Download
         </button>
     </div>
- 
+
+
     <!-- SoundCloud players -->
 
     <p>
@@ -319,6 +372,7 @@ audio {
             src="https://w.soundcloud.com/player/?url=https://soundcloud.com/sudety/zwei-karen-wixen-super?">
         </iframe>
     </p>
+
 
     <p>
         <iframe
@@ -347,7 +401,9 @@ audio {
                 autocomplete="off"
             >
 
-            <button onclick="checkPassword()">Download</button>
+            <button onclick="checkPassword()">
+                Download
+            </button>
 
             <div id="passwordError">
                 Incorrect password.
