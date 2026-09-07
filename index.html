@@ -80,20 +80,25 @@
             line-height: 1;
         }
 
-        .email {
-            margin: 0 0 8px;
-            color: #777;
-            text-decoration: none;
-            font-size: 13px;
-            transition: color 0.15s ease;
-        }
-                    .email:last-child {
-    margin-bottom: 0;
-}
+    .header-links {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 14px;
+    }
 
-        .email:hover {
-            color: #111;
-        }
+    .email {
+        display: block;
+        color: #777;
+        text-decoration: none;
+        font-size: 13px;
+        transition: color 0.15s ease;
+    }
+
+    .email:hover {
+        color: #111;
+    }
+
 
         /* ==================================================
            SECTIONS
@@ -467,34 +472,31 @@
             ABM SOUNDLAB
         </h1>
 
-        <div class="email">
+
+    <div class="header-links">
+
         <a
             class="email"
             href="mailto:abm.soundlab@gmail.com"
         >
             E-mail
         </a>
-        </div>
 
-
-        <div class="email">
         <a
             class="email"
             href="https://www.instagram.com/abm.soundlab?stkn=Y2EzbW82NHBrdmF2"
         >
             Instagram
         </a>
-        </div>
 
-
-        <div class="email">
         <a
             class="email"
             href="https://soundcloud.com/abm-soundlab?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
         >
-        SoundCloud
+            SoundCloud
         </a>
-        </div>
+
+    </div>
         
     </header>
 
