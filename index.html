@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,32 +73,56 @@
             margin-bottom: 58px;
         }
 
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
         .logo {
-            margin: 0 0 8px;
+            margin: 0;
             font-size: 18px;
             font-weight: 700;
             letter-spacing: 0.08em;
             line-height: 1;
         }
 
-    .header-links {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        margin-top: 14px;
-    }
 
-    .email {
-        display: block;
-        color: #777;
-        text-decoration: none;
-        font-size: 13px;
-        transition: color 0.15s ease;
-    }
+        /* ==================================================
+           SOCIAL ICONS
+           ================================================== */
 
-    .email:hover {
-        color: #111;
-    }
+        .social-links {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            color: #888;
+            text-decoration: none;
+            transition:
+                color 0.15s ease,
+                transform 0.15s ease;
+        }
+
+        .social-link:hover {
+            color: #111;
+            transform: translateY(-1px);
+        }
+
+        .social-link svg {
+            display: block;
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
 
 
         /* ==================================================
@@ -333,11 +358,11 @@
                 color: #f2f2f2;
             }
 
-            .email {
+            .social-link {
                 color: #777;
             }
 
-            .email:hover {
+            .social-link:hover {
                 color: #fff;
             }
 
@@ -423,6 +448,20 @@
                 margin-bottom: 42px;
             }
 
+            .header-top {
+                gap: 16px;
+            }
+
+            .social-links {
+                gap: 10px;
+            }
+
+            .social-link,
+            .social-link svg {
+                width: 17px;
+                height: 17px;
+            }
+
             .section {
                 margin-bottom: 46px;
             }
@@ -468,36 +507,87 @@
 
     <header class="header">
 
-        <h1 class="logo">
-            ABM SOUNDLAB
-        </h1>
+        <div class="header-top">
+
+            <h1 class="logo">
+                ABM SOUNDLAB
+            </h1>
 
 
-    <div class="header-links">
+            <nav class="social-links" aria-label="Social links">
 
-        <a
-            class="email"
-            href="mailto:abm.soundlab@gmail.com"
-        >
-            E-mail
-        </a>
 
-        <a
-            class="email"
-            href="https://www.instagram.com/abm.soundlab?stkn=Y2EzbW82NHBrdmF2"
-        >
-            Instagram
-        </a>
+                <!-- E-MAIL -->
 
-        <a
-            class="email"
-            href="https://soundcloud.com/abm-soundlab?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
-        >
-            SoundCloud
-        </a>
+                <a
+                    class="social-link"
+                    href="mailto:abm.soundlab@gmail.com"
+                    aria-label="E-mail"
+                    title="E-mail"
+                >
 
-    </div>
-        
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+
+                        <path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13Zm2.5-.5a.5.5 0 0 0-.3.1L12 11l7.8-5.9a.5.5 0 0 0-.3-.1h-15ZM20 7l-7.4 5.6a1 1 0 0 1-1.2 0L4 7v11.5c0 .3.2.5.5.5h15c.3 0 .5-.2.5-.5V7Z"/>
+
+                    </svg>
+
+                </a>
+
+
+                <!-- INSTAGRAM -->
+
+                <a
+                    class="social-link"
+                    href="https://www.instagram.com/abm.soundlab?stkn=Y2EzbW82NHBrdmF2"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    title="Instagram"
+                >
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+
+                        <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5ZM17.5 6A1.25 1.25 0 1 1 16.25 7.25 1.25 1.25 0 0 1 17.5 6Z"/>
+
+                    </svg>
+
+                </a>
+
+
+                <!-- SOUNDCLOUD -->
+
+                <a
+                    class="social-link"
+                    href="https://soundcloud.com/abm-soundlab?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="SoundCloud"
+                    title="SoundCloud"
+                >
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+
+                        <path d="M1.5 14.5c0-.8.6-1.5 1.4-1.6V10a.6.6 0 1 1 1.2 0v2.9c.3.1.5.3.7.5V9a.6.6 0 1 1 1.2 0v4.4c.2-.1.5-.1.7-.1V7.5a.6.6 0 1 1 1.2 0v5.8c.2-.1.5-.2.8-.2h.1C9.7 9.9 12 7.5 15.2 7.5c3.7 0 6.3 2.4 6.8 5.6.3-.1.5-.1.8-.1 1.5 0 2.7 1.2 2.7 2.7S24.3 18.5 22.8 18.5H9.4c-.5 0-.9-.1-1.3-.4v.4a.6.6 0 1 1-1.2 0v-.7c-.2.1-.5.1-.7.1v.6a.6.6 0 1 1-1.2 0v-.7c-.2-.1-.5-.2-.7-.4v.5a.6.6 0 1 1-1.2 0v-.9a1.6 1.6 0 0 1-1.6-1.6Z"/>
+
+                    </svg>
+
+                </a>
+
+
+            </nav>
+
+        </div>
+
     </header>
 
 
@@ -530,12 +620,16 @@
                 controls
                 controlsList="nodownload"
             >
+
                 <source
                     src="ABM_108_Emin_dancehall.mp3"
                     type="audio/mpeg"
                 >
+
                 Your browser does not support audio.
+
             </audio>
+
 
             <button
                 class="download-btn"
@@ -565,12 +659,16 @@
                 controls
                 controlsList="nodownload"
             >
+
                 <source
                     src="ABM_145_Fmin_chief_keef.mp3"
                     type="audio/mpeg"
                 >
+
                 Your browser does not support audio.
+
             </audio>
+
 
             <button
                 class="download-btn"
@@ -600,12 +698,16 @@
                 controls
                 controlsList="nodownload"
             >
+
                 <source
                     src="ABM_155_Abmin_chief_keef.mp3"
                     type="audio/mpeg"
                 >
+
                 Your browser does not support audio.
+
             </audio>
+
 
             <button
                 class="download-btn"
@@ -644,11 +746,14 @@
                 controls
                 controlsList="nodownload"
             >
+
                 <source
                     src="143_synthpunk.mp3"
                     type="audio/mpeg"
                 >
+
                 Your browser does not support audio.
+
             </audio>
 
         </div>
@@ -668,11 +773,14 @@
                 controls
                 controlsList="nodownload"
             >
+
                 <source
                     src="313_liquid_808.mp3"
                     type="audio/mpeg"
                 >
+
                 Your browser does not support audio.
+
             </audio>
 
         </div>
@@ -689,6 +797,7 @@
         <div class="section-label">
             SoundCloud
         </div>
+
 
         <div class="soundcloud-list">
 
@@ -945,4 +1054,6 @@
 
 
 </body>
+
 </html>
+```
