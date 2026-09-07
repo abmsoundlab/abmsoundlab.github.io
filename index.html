@@ -189,6 +189,38 @@
             font-size: 11px;
             white-space: nowrap;
         }
+       
+            .sample {
+                color: #999;
+            }
+
+            .sample a {
+                color: #777;
+                text-decoration: underline;
+                text-decoration-thickness: 1px;
+                text-underline-offset: 2px;
+            }
+
+            .sample a:hover {
+                color: #111;
+            }
+
+            @media (prefers-color-scheme: dark) {
+
+                .sample {
+                    color: #666;
+                }
+
+                .sample a {
+                    color: #999;
+                }
+
+                .sample a:hover {
+                    color: #fff;
+                }
+
+            }
+
 
 
         /* ==================================================
@@ -603,18 +635,22 @@
 
         <div class="track">
 
-            <div class="track-header">
 
-                <div class="track-name">
-                    Dancehall (sample: <a href="https://www.youtube.com/watch?v=bXtJnIA9Hgw"
-                                            title=No_4mat - No Fear> </a>)
-                </div>
-
-                <div class="track-meta">
-                    108 BPM Emin
-                </div>
-
+            <div class="track-name">
+                Dancehall
+                <span class="sample">
+                    (sample:
+                    <a
+                        href="https://www.youtube.com/watch?v=bXtJnIA9Hgw"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="No_4mat - No Fear"
+                    >
+                        No_4mat - No Fear
+                    </a>)
+                </span>
             </div>
+
 
             <audio
                 controls
