@@ -43,7 +43,6 @@
             background: #333;
         }
 
-        /* Password popup */
         #passwordOverlay {
             display: none;
             position: fixed;
@@ -71,14 +70,19 @@
             border: 1px solid #555;
         }
 
-        #passwordBox button {
-            padding: 7px 12px;
-            background: #222;
-            color: white;
-            border: 1px solid #555;
-            cursor: pointer;
-        }
+       #passwordBox button {
+    padding: 8px 14px;
+    margin-right: 5px;
+    background: #222;
+    color: white;
+    border: 1px solid #555;
+    cursor: pointer;
+    font-family: Helvetica, sans-serif;
+}
 
+#passwordBox button:hover {
+    background: #333;
+}
         #passwordError {
             color: #ff6666;
             font-size: 13px;
