@@ -225,11 +225,15 @@
 
     <script>
 
-        // CHANGE THIS PASSWORD
         const DOWNLOAD_PASSWORD = "feketecartel";
 
         let requestedFile = null;
-
+        
+        document.querySelectorAll("audio").forEach(audio => {
+    audio.addEventListener("contextmenu", function(event) {
+        event.preventDefault();
+    });
+});
 
         function requestDownload(filename) {
 
