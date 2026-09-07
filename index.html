@@ -10,89 +10,106 @@
 
     <style>
         body {
-            font-family: Helvetica, sans-serif;
-            background-color: black;
-            color: white;
-        }
+    font-family: Helvetica, sans-serif;
+    margin: 0;
+}
 
-        .track {
-            margin-bottom: 20px;
-        }
+/* =========================
+   DARK MODE
+   ========================= */
 
-        .track-name {
-            margin-bottom: 5px;
-        }
+@media (prefers-color-scheme: dark) {
 
-        audio {
-            width: 100%;
-            max-width: 500px;
-        }
+    body {
+        background-color: #000;
+        color: #fff;
+    }
 
-        .download-btn {
-            display: block;
-            margin-top: 6px;
-            padding: 5px 10px;
-            background: #222;
-            color: white;
-            border: 1px solid #555;
-            cursor: pointer;
-            font-family: Helvetica, sans-serif;
-        }
+    .download-btn {
+        background: #222;
+        color: #fff;
+        border: 1px solid #555;
+    }
 
-        .download-btn:hover {
-            background: #333;
-        }
+    .download-btn:hover {
+        background: #333;
+    }
 
-        /* Password popup overlay */
-        #passwordOverlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.8);
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            cursor: pointer;
-        }
+    #passwordOverlay {
+        background: rgba(0, 0, 0, 0.8);
+    }
 
-        /* Password popup itself */
-        #passwordBox {
-            background: #111;
-            border: 1px solid #444;
-            padding: 20px;
-            width: 280px;
-            cursor: default;
-        }
+    #passwordBox {
+        background: #111;
+        color: #fff;
+        border: 1px solid #444;
+    }
 
-        #passwordBox input {
-            width: 100%;
-            box-sizing: border-box;
-            margin: 10px 0;
-            padding: 8px;
-            background: #222;
-            color: white;
-            border: 1px solid #555;
-        }
+    #passwordBox input {
+        background: #222;
+        color: #fff;
+        border: 1px solid #555;
+    }
 
-        #passwordBox button {
-            padding: 8px 14px;
-            background: #222;
-            color: white;
-            border: 1px solid #555;
-            cursor: pointer;
-            font-family: Helvetica, sans-serif;
-        }
+    #passwordBox button {
+        background: #222;
+        color: #fff;
+        border: 1px solid #555;
+    }
 
-        #passwordBox button:hover {
-            background: #333;
-        }
+    #passwordBox button:hover {
+        background: #333;
+    }
+}
 
-        #passwordError {
-            color: #ff6666;
-            font-size: 13px;
-            margin-top: 8px;
-            display: none;
-        }
+
+/* =========================
+   LIGHT MODE
+   ========================= */
+
+@media (prefers-color-scheme: light) {
+
+    body {
+        background-color: #fff;
+        color: #000;
+    }
+
+    .download-btn {
+        background: #eee;
+        color: #000;
+        border: 1px solid #aaa;
+    }
+
+    .download-btn:hover {
+        background: #ddd;
+    }
+
+    #passwordOverlay {
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    #passwordBox {
+        background: #fff;
+        color: #000;
+        border: 1px solid #aaa;
+    }
+
+    #passwordBox input {
+        background: #fff;
+        color: #000;
+        border: 1px solid #aaa;
+    }
+
+    #passwordBox button {
+        background: #eee;
+        color: #000;
+        border: 1px solid #aaa;
+    }
+
+    #passwordBox button:hover {
+        background: #ddd;
+    }
+}
     </style>
 </head>
 
