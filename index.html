@@ -203,20 +203,23 @@
 
         <div id="passwordBox">
 
-            <div>Enter password to download:</div>
+    <div>Enter password to download:</div>
 
-            <input
-                type="password"
-                id="passwordInput"
-                placeholder="Password"
-                autocomplete="off"
-            >
+    <input
+        type="password"
+        id="passwordInput"
+        placeholder="Password"
+        autocomplete="off"
+    >
 
-            <button onclick="checkPassword()">Download</button>
+    <button onclick="checkPassword()">Download</button>
+    <button onclick="closePasswordBox()">Cancel</button>
 
-            <div id="passwordError">
-                Incorrect password.
-            </div>
+    <div id="passwordError">
+        Incorrect password.
+    </div>
+
+</div>
 
         </div>
 
